@@ -1,0 +1,3 @@
+[submodule "OnlineJudgeFE"]
+	path = OnlineJudgeFE
+	url = https://github.com/WVC-Online-Judge/OnlineJudgeFE
