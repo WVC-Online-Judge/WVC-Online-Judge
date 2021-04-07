@@ -20,7 +20,7 @@ jobs:
         run: |
           docker pull registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
           mkdir decompiled
-          undocker --output decompiled registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
+          undocker -i --output decompiled registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend:latest
           cd decompiled
           ll -a
       - name: Build
