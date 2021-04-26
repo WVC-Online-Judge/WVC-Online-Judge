@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
       # - name: Init
       #   run: |
       #     echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u ${{ secrets.CR_USERNAME }} --password-stdin
@@ -19,14 +21,20 @@ jobs:
       - name: Pull and decompile
         run: |
           docker pull registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
-          mkdir decompiled
-          docker save registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
-          undocker -i --output decompiled registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
           cd decompiled
+          docker save registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend | undocker -i registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
           ll -a
+          cd ..
       - name: Build
         run: |
-          echo TODO
+          cd OnlineJudgeFE
+          npm install
+          export NODE_ENV=production
+          export TARGET=http://oj-backend:8000
+          npm run build:dll
+          cd dist
+          ll -a
+
       # - name: Publish
       #   run: |
       #     docker tag runner ghcr.io/livetl/runner:latest
