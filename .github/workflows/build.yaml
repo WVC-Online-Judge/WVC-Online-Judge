@@ -21,6 +21,7 @@ jobs:
       - name: Pull and decompile
         run: |
           docker pull registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
+          mkdir decompiled
           cd decompiled
           docker save registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend | undocker -i registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
           ll -a
