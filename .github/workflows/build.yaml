@@ -24,7 +24,8 @@ jobs:
           docker tag registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend backend
           mkdir decompiled
           cd decompiled
-          docker save backend | undocker -i backend
+          docker save backend --output decompiled.tar
+          tar xvf decompiled.tar
           ll -a
           cd ..
       - name: Build
