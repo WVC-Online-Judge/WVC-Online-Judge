@@ -15,9 +15,6 @@ jobs:
       #     echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u ${{ secrets.CR_USERNAME }} --password-stdin
       # - uses: satackey/action-docker-layer-caching@v0.0.11
         # continue-on-error: true
-      - name: Install deps
-        run: |
-          pip install undocker
       - name: Pull and decompile
         run: |
           docker pull registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
@@ -26,7 +23,7 @@ jobs:
           cd decompiled
           docker save backend --output decompiled.tar
           tar xvf decompiled.tar
-          ll -a
+          ls -a
           cd ..
       - name: Build
         run: |
@@ -36,7 +33,7 @@ jobs:
           export TARGET=http://oj-backend:8000
           npm run build:dll
           cd dist
-          ll -a
+          ls -a
 
       # - name: Publish
       #   run: |
