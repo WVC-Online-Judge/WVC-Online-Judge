@@ -17,14 +17,9 @@ jobs:
         # continue-on-error: true
       - name: Pull and decompile
         run: |
-          docker pull registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend
-          docker tag registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend backend
-          mkdir decompiled
-          cd decompiled
-          docker save backend --output decompiled.tar
-          tar xvf decompiled.tar
-          ls -a
-          cd ..
+          git clone -b 2.0 https://github.com/QingdaoU/OnlineJudgeDeploy.git
+          cd OnlineJudgeDeploy
+          docker-compose up -d
       - name: Build
         run: |
           cd OnlineJudgeFE
