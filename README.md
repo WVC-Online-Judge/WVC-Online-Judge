@@ -45,3 +45,10 @@ npm run build:dll
 set TARGET=http://backend-address:port
 npm run dev
 ```
+
+## Building for Production
+
+Navigate to the [Build GitHub Action](https://github.com/WVC-Online-Judge/WVC-Online-Judge/actions/workflows/build.yaml) and click `Run workflow`.
+
+![image](https://user-images.githubusercontent.com/38841491/121101011-d0ba3300-c7af-11eb-871f-9640235081bd.png)
+
