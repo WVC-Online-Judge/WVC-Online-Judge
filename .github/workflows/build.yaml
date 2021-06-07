@@ -3,19 +3,19 @@ name: Build
 on: workflow_dispatch
 
 jobs:
-  build_runner:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: 'recursive'
-      # - name: Init
-      #   run: |
-      #     echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u ${{ secrets.CR_USERNAME }} --password-stdin
-      # - uses: satackey/action-docker-layer-caching@v0.0.11
-        # continue-on-error: true
-      - name: Pull and decompile
+      - name: Login
+        run: |
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u ${{ secrets.CR_USERNAME }} --password-stdin
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+      - name: Pull
         run: |
           git clone -b 2.0 https://github.com/QingdaoU/OnlineJudgeDeploy.git
           cd OnlineJudgeDeploy
@@ -29,10 +29,12 @@ jobs:
           export NODE_ENV=production
           export TARGET=http://oj-backend:8000
           node_modules/webpack/bin/webpack.js --config=build/webpack.prod.conf.js
+      - name: Copy
+        run: |
           docker ps
           docker cp dist oj-backend:/app/dist
-
-      # - name: Publish
-      #   run: |
-      #     docker tag runner ghcr.io/livetl/runner:latest
-      #     docker push ghcr.io/livetl/runner:latest
+          docker commit oj-backend
+      - name: Push
+        run: |
+          docker tag oj-backend ghcr.io/WVC-Online-Judge/backend:latest
+          docker push ghcr.io/WVC-Online-Judge/backend:latest
