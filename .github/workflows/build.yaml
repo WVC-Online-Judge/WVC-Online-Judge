@@ -20,7 +20,6 @@ jobs:
           git clone -b 2.0 https://github.com/QingdaoU/OnlineJudgeDeploy.git
           cd OnlineJudgeDeploy
           docker-compose up -d
-          cd ..
       - name: Build
         run: |
           cd OnlineJudgeFE
@@ -31,6 +30,7 @@ jobs:
           node_modules/webpack/bin/webpack.js --config=build/webpack.prod.conf.js
       - name: Copy
         run: |
+          cd OnlineJudgeFE
           docker ps
           docker cp dist oj-backend:/app/dist
           docker commit oj-backend
