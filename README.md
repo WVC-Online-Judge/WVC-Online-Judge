@@ -1,5 +1,7 @@
 # WVC-Online-Judge
 
+[![Build](https://github.com/WVC-Online-Judge/WVC-Online-Judge/actions/workflows/build.yaml/badge.svg)](https://github.com/WVC-Online-Judge/WVC-Online-Judge/actions/workflows/build.yaml)
+
 The [Qingdao University Online Judge](https://github.com/QingdaoU/OnlineJudge) system with a customized frontend for West Valley College.
 
 ## Production Environment
