@@ -10,7 +10,7 @@ Run the following commands:
 
 ```bash
 git clone -b 2.0 https://github.com/WVC-Online-Judge/OnlineJudgeDeploy.git
-cd WVC-Online-Judge
+cd OnlineJudgeDeploy
 docker-compose up -d
 ```
 
