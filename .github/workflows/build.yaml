@@ -33,8 +33,8 @@ jobs:
           cd OnlineJudgeFE
           docker ps
           docker cp dist oj-backend:/app/dist
-          docker commit oj-backend
+          docker commit oj-backend oj-backend
       - name: Push
         run: |
-          docker tag registry.cn-hangzhou.aliyuncs.com/onlinejudge/oj_backend ghcr.io/wvc-online-judge/backend:latest
+          docker tag oj-backend ghcr.io/wvc-online-judge/backend:latest
           docker push ghcr.io/wvc-online-judge/backend:latest
