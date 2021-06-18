@@ -6,7 +6,15 @@ The [Qingdao University Online Judge](https://github.com/QingdaoU/OnlineJudge) s
 
 ## Production Environment
 
-Run the following commands:
+### Quick start
+Run the following command:
+
+```bash
+curl https://raw.githubusercontent.com/WVC-Online-Judge/WVC-Online-Judge/master/setup.sh | bash
+```
+
+### Manual Setup
+You can manually run the following commands:
 
 ```bash
 git clone -b 2.0 https://github.com/WVC-Online-Judge/OnlineJudgeDeploy.git
